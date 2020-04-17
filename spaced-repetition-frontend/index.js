@@ -53,14 +53,11 @@ function getMemories(){
 function postMemory(memory_data){
   fetch(MEMORIES_URL, {
     method: "POST",
-    header: {
-      'Content-Type': 'application/json',
+    headers: {
+      "Content-Type": "application/json",
       Accept: "application/json"
     },
-    body: JSON.stringify({
-      "title":  mempry_data.title.value
-
-    })
+    body: JSON.stringify(memory_data)
   })
   .then(res => res.json())
   .then(memoryHash => makeMemoryCard(memoryHash))
@@ -69,4 +66,6 @@ function postMemory(memory_data){
 
 document.addEventListener("DOMContentLoaded", () =>{
   getMemories();
+  let testMemoryData = {title: "Silly Hat"}
+  postMemory(testMemoryData)
 })
