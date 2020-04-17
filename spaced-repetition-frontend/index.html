@@ -16,12 +16,18 @@
           <div class="card-header">
             Add something you want to remember...
           </div>
-          <div class="card-body">
-
-          </div>
-          <div class="card-footer">
-            <div class="btn btn-primary btn-block">Create Memory</div>
-          </div>
+          <form id='new-memory-form'>
+            <div class="card-body">
+              <div class="form-group">
+                <label for="memory-title">Title</label>
+                <input type="text" name="memory-title" id="memory-title" class="form-control" placeholder="" aria-describedby="helpId">
+                <small id="memory-title-help" class="text-muted">What is the thing that you are trying to remember?</small>
+              </div>
+            </div>
+            <div class="card-footer">
+              <button type="submit" class="btn btn-primary btn-block btn-block">Create Memory</button>
+            </div>
+          </form>
         </div>
       </section>
       <section id="memory-cards">
