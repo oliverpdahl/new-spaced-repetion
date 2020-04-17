@@ -45,15 +45,9 @@ function makeMemoryCards(memories){
 
 function getMemories(){
   fetch(MEMORIES_URL, {mode: 'cors'})
-  .then(function(response){
-    return response.json();
-  })
-  .then(function(json){
-    makeMemoryCards(makeMemories(json))
-  })
-  .catch(function(error){
-    console.log(error)
-  })
+  .then(res => res.json())
+  .then(json => makeMemoryCards(makeMemories(json))) 
+  .catch(error => console.log(error))
 }
 
 function postMemory(memory_data){
