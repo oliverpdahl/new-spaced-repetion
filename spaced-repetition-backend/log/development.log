@@ -197,3 +197,20 @@ Processing by MemoriesController#index as */*
 Completed 200 OK in 3ms (Views: 2.9ms | ActiveRecord: 0.3ms | Allocations: 1086)
 
 
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mMemory Create (0.4ms)[0m  [1m[32mINSERT INTO "memories" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "Factfullness Book"], ["created_at", "2020-04-17 20:40:59.993762"], ["updated_at", "2020-04-17 20:40:59.993762"]]
+  [1m[35m (2.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mMemory Create (0.4ms)[0m  [1m[32mINSERT INTO "memories" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "Visual Studio Code Shortcuts"], ["created_at", "2020-04-17 20:41:00.000229"], ["updated_at", "2020-04-17 20:41:00.000229"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mMemory Create (0.4ms)[0m  [1m[32mINSERT INTO "memories" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "Central American Capitals"], ["created_at", "2020-04-17 20:41:00.005688"], ["updated_at", "2020-04-17 20:41:00.005688"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
