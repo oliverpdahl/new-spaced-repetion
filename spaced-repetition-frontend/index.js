@@ -26,12 +26,18 @@ function makeMemoryCard(memory){
   card.className = 'card';
   let cardBody = document.createElement('div');
   cardBody.className = 'card-body';
-  let cardTitle = document.createElement('h3');
+  let cardTitle = document.createElement('h4');
   cardTitle.className = 'card-title';
   cardTitle.textContent = memory.title;
   cardBody.appendChild(cardTitle);
   card.appendChild(cardBody);
   MEMORY_CONTAINER.appendChild(card)
+}
+
+function makeMemoryCards(memories){
+  for(const memory in memory){
+    makeMemoryCard(memory)
+  }
 }
 
 function getMemories(){
