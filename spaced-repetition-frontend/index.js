@@ -21,13 +21,27 @@ function makeMemories(memoryHash){
   return memoryArray
 }
 
+function makeMemoryCard(memory){
+  let card = document.createElement('div');
+  card.className = 'card';
+  let cardBody = document.createElement('div');
+  cardBody.className = 'card-body';
+  let cardTitle = document.createElement('h3');
+  cardTitle.className = 'card-title';
+  cardTitle.textContent = memory.title;
+  cardBody.appendChild(cardTitle);
+  card.appendChild(cardBody);
+  MEMORY_CONTAINER.appendChild(card)
+}
+
 function getMemories(){
   fetch(MEMORIES_URL, {mode: 'cors'})
   .then(function(response){
     return response.json();
   })
   .then(function(json){
-    console.log(makeMemories(json))
+    memories = makeMemories(json)
+    makeMemoryCard(memories[0])
   })
   .catch(function(error){
     console.log(error)
