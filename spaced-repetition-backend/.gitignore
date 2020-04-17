@@ -70,3 +70,6 @@ yarn-debug.log*
 
 #Ignore development log
 /log/development.log
+/db/development.sqlite3
+/Gemfile.lock
+/db/development.sqlite3
