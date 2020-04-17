@@ -24,10 +24,13 @@ function makeMemories(memoryHash){
 function makeMemoryCard(memory){
   let card = document.createElement('div');
   card.className = 'card';
+
   let cardBody = document.createElement('div');
   cardBody.className = 'card-body';
+
   let cardTitle = document.createElement('h4');
   cardTitle.className = 'card-title';
+
   cardTitle.textContent = memory.title;
   cardBody.appendChild(cardTitle);
   card.appendChild(cardBody);
@@ -51,6 +54,22 @@ function getMemories(){
   .catch(function(error){
     console.log(error)
   })
+}
+
+function postMemory(memory_data){
+  fetch(MEMORIES_URL, {
+    method: "POST",
+    header: {
+      'Content-Type': 'application/json',
+      Accept: "application/json"
+    },
+    body: JSON.stringify({
+      "title":  mempry_data.title.value
+
+    })
+  })
+  .then(res => res.json())
+  .then(memoryHash => makeMemoryCard(memoryHash))
 }
 
 document.addEventListener("DOMContentLoaded", () =>{
