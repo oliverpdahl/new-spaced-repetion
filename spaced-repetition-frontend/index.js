@@ -35,8 +35,8 @@ function makeMemoryCard(memory){
 }
 
 function makeMemoryCards(memories){
-  for(const memory in memory){
-    makeMemoryCard(memory)
+  for(const memory of memories){
+    makeMemoryCard(memory);
   }
 }
 
@@ -46,8 +46,7 @@ function getMemories(){
     return response.json();
   })
   .then(function(json){
-    memories = makeMemories(json)
-    makeMemoryCard(memories[0])
+    makeMemoryCards(makeMemories(json))
   })
   .catch(function(error){
     console.log(error)
