@@ -1,0 +1,199 @@
+Started GET "/" for ::1 at 2020-04-17 10:25:44 -0400
+  [1m[35m (7.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering vendor/bundle/ruby/2.6.0/gems/railties-6.0.2.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered vendor/bundle/ruby/2.6.0/gems/railties-6.0.2.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 7.8ms | Allocations: 494)
+Completed 200 OK in 21ms (Views: 14.5ms | ActiveRecord: 0.0ms | Allocations: 3804)
+
+
+Started GET "/favicon.ico" for ::1 at 2020-04-17 10:25:44 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+actionpack (6.0.2.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.2.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.2.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.2.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.2) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.2.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.2) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.2.2) lib/action_dispatch/middleware/host_authorization.rb:83:in `call'
+railties (6.0.2.2) lib/rails/engine.rb:526:in `call'
+puma (4.3.3) lib/puma/configuration.rb:228:in `call'
+puma (4.3.3) lib/puma/server.rb:682:in `handle_request'
+puma (4.3.3) lib/puma/server.rb:472:in `process_client'
+puma (4.3.3) lib/puma/server.rb:328:in `block in run'
+puma (4.3.3) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateMemories (20200417143719)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE TABLE "memories" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200417143719"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-04-17 16:44:23.901633"], ["updated_at", "2020-04-17 16:44:23.901633"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mMemory Create (0.8ms)[0m  [1m[32mINSERT INTO "memories" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "Factfullness Book"], ["created_at", "2020-04-17 16:50:05.943294"], ["updated_at", "2020-04-17 16:50:05.943294"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mMemory Create (0.3ms)[0m  [1m[32mINSERT INTO "memories" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "Visual Studio Code Shortcuts"], ["created_at", "2020-04-17 16:50:05.949737"], ["updated_at", "2020-04-17 16:50:05.949737"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mMemory Create (0.4ms)[0m  [1m[32mINSERT INTO "memories" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "Central American Capitals"], ["created_at", "2020-04-17 16:50:05.955124"], ["updated_at", "2020-04-17 16:50:05.955124"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mMemory Create (1.0ms)[0m  [1m[32mINSERT INTO "memories" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "Factfullness Book"], ["created_at", "2020-04-17 16:50:52.010649"], ["updated_at", "2020-04-17 16:50:52.010649"]]
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mMemory Create (0.2ms)[0m  [1m[32mINSERT INTO "memories" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "Visual Studio Code Shortcuts"], ["created_at", "2020-04-17 16:50:52.016262"], ["updated_at", "2020-04-17 16:50:52.016262"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mMemory Create (0.2ms)[0m  [1m[32mINSERT INTO "memories" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "Central American Capitals"], ["created_at", "2020-04-17 16:50:52.020339"], ["updated_at", "2020-04-17 16:50:52.020339"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/" for ::1 at 2020-04-17 13:27:47 -0400
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/oliver/.rvm/gems/ruby-2.7.1/gems/railties-6.0.2.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/oliver/.rvm/gems/ruby-2.7.1/gems/railties-6.0.2.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 11.2ms | Allocations: 409)
+Completed 200 OK in 25ms (Views: 18.5ms | ActiveRecord: 0.0ms | Allocations: 2263)
+
+
+Started GET "/" for ::1 at 2020-04-17 13:46:10 -0400
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/oliver/.rvm/gems/ruby-2.7.1/gems/railties-6.0.2.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/oliver/.rvm/gems/ruby-2.7.1/gems/railties-6.0.2.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 30.5ms | Allocations: 179)
+Completed 200 OK in 41ms (Views: 36.3ms | ActiveRecord: 0.0ms | Allocations: 714)
+
+
+Started GET "/memories" for ::1 at 2020-04-17 13:46:30 -0400
+Processing by MemoriesController#index as */*
+  [1m[36mMemory Load (3.2ms)[0m  [1m[34mSELECT "memories".* FROM "memories"[0m
+  ↳ app/controllers/memories_controller.rb:3:in `index'
+Completed 200 OK in 68ms (Views: 54.3ms | ActiveRecord: 5.2ms | Allocations: 4270)
+
+
+Started GET "/memories" for ::1 at 2020-04-17 13:51:44 -0400
+Processing by MemoriesController#index as */*
+  [1m[36mMemory Load (0.3ms)[0m  [1m[34mSELECT "memories".* FROM "memories"[0m
+  ↳ app/controllers/memories_controller.rb:3:in `index'
+Completed 200 OK in 6ms (Views: 5.2ms | ActiveRecord: 0.3ms | Allocations: 1431)
+
+
+Started GET "/memories" for ::1 at 2020-04-17 13:54:36 -0400
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by MemoriesController#index as */*
+  [1m[36mMemory Load (0.5ms)[0m  [1m[34mSELECT "memories".* FROM "memories"[0m
+  ↳ app/controllers/memories_controller.rb:3:in `index'
+Completed 200 OK in 9ms (Views: 5.5ms | ActiveRecord: 1.2ms | Allocations: 4177)
+
+
+Started GET "/memories" for ::1 at 2020-04-17 13:56:30 -0400
+Processing by MemoriesController#index as */*
+  [1m[36mMemory Load (0.3ms)[0m  [1m[34mSELECT "memories".* FROM "memories"[0m
+  ↳ app/controllers/memories_controller.rb:3:in `index'
+Completed 200 OK in 4ms (Views: 3.5ms | ActiveRecord: 0.3ms | Allocations: 1447)
+
+
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateMemories (20200417143719)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "memories" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200417143719"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-04-17 17:57:44.589078"], ["updated_at", "2020-04-17 17:57:44.589078"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mMemory Create (0.4ms)[0m  [1m[32mINSERT INTO "memories" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "Factfullness Book"], ["created_at", "2020-04-17 17:57:53.323361"], ["updated_at", "2020-04-17 17:57:53.323361"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mMemory Create (0.3ms)[0m  [1m[32mINSERT INTO "memories" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "Visual Studio Code Shortcuts"], ["created_at", "2020-04-17 17:57:53.328906"], ["updated_at", "2020-04-17 17:57:53.328906"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mMemory Create (0.3ms)[0m  [1m[32mINSERT INTO "memories" ("title", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["title", "Central American Capitals"], ["created_at", "2020-04-17 17:57:53.333216"], ["updated_at", "2020-04-17 17:57:53.333216"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/memories" for ::1 at 2020-04-17 13:57:56 -0400
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by MemoriesController#index as */*
+  [1m[36mMemory Load (0.2ms)[0m  [1m[34mSELECT "memories".* FROM "memories"[0m
+  ↳ app/controllers/memories_controller.rb:3:in `index'
+Completed 200 OK in 6ms (Views: 4.0ms | ActiveRecord: 0.6ms | Allocations: 3635)
+
+
+Started GET "/memories" for ::1 at 2020-04-17 14:00:56 -0400
+Processing by MemoriesController#index as */*
+  [1m[36mMemory Load (0.2ms)[0m  [1m[34mSELECT "memories".* FROM "memories"[0m
+  ↳ app/controllers/memories_controller.rb:3:in `index'
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.2ms | Allocations: 1086)
+
+
+Started GET "/memories" for ::1 at 2020-04-17 14:01:12 -0400
+Processing by MemoriesController#index as */*
+  [1m[36mMemory Load (0.3ms)[0m  [1m[34mSELECT "memories".* FROM "memories"[0m
+  ↳ app/controllers/memories_controller.rb:3:in `index'
+Completed 200 OK in 4ms (Views: 2.9ms | ActiveRecord: 0.3ms | Allocations: 1086)
+
+
+Started GET "/memories" for ::1 at 2020-04-17 14:10:32 -0400
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by MemoriesController#index as */*
+  [1m[36mMemory Load (0.4ms)[0m  [1m[34mSELECT "memories".* FROM "memories"[0m
+  ↳ app/controllers/memories_controller.rb:3:in `index'
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.4ms | Allocations: 1112)
+
+
+Started GET "/memories" for ::1 at 2020-04-17 14:10:50 -0400
+Processing by MemoriesController#index as */*
+  [1m[36mMemory Load (0.3ms)[0m  [1m[34mSELECT "memories".* FROM "memories"[0m
+  ↳ app/controllers/memories_controller.rb:3:in `index'
+Completed 200 OK in 3ms (Views: 2.9ms | ActiveRecord: 0.3ms | Allocations: 1086)
+
+
