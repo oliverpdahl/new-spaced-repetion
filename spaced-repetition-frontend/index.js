@@ -34,7 +34,7 @@ function makeMemoryCard(memory){
   cardTitle.textContent = memory.title;
   cardBody.appendChild(cardTitle);
   card.appendChild(cardBody);
-  MEMORY_CONTAINER.appendChild(card)
+  MEMORY_CONTAINER.prepend(card)
 }
 
 function makeMemoryCards(memories){
@@ -64,6 +64,7 @@ function postMemory(memory_data){
   })
   .then(res => res.json())
   .then(memoryHash => makeMemoryCard(memoryHash))
+  .catch(error => console.log(error))
 }
 
 document.addEventListener("DOMContentLoaded", () =>{
