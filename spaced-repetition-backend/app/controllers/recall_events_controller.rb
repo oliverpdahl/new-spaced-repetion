@@ -1,6 +1,8 @@
 class RecallEventsController < ApplicationController
   def update
-    new_status = {id: params[:id], complete: params[:complete]}
-    RecallEvent.find(params[:id]).update(new_status)
+    recall_event = RecallEvent.find(params[:id])
+    new_status = {id: params[:id], complete: !recall_event.complete}
+    recall_event.update(new_status)
+    render json: recall_event
   end
 end
