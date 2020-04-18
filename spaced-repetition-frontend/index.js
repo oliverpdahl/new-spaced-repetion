@@ -60,6 +60,7 @@ function makeMemoryCard(memory){
   let recall_buttons = document.createElement('div')
   recall_buttons.className = 'row-fluid recall-buttons-container'
 
+  console.log(memory.recallEvents)
   for(const recallEvent of memory.recallEvents){
     recall_buttons.appendChild(makeRecallEventButton(recallEvent))
   }
@@ -120,7 +121,7 @@ function postMemory(memory_data){
     body: JSON.stringify(memory_data)
   })
   .then(res => res.json())
-  .then(memoryHash => makeMemoryCard(memoryHash))
+  .then(memoryHash => makeMemoryCard(makeMemory(memoryHash)))
   .catch(error => console.log(error))
 }
 
