@@ -78,11 +78,18 @@ function makeRecallEvents(recallEventsHash){
   return recallEventsArray
 }
 
+function makeRecallEventButton(recallEvent){
+  let button = document.createElement('button')
+  button.class = 'recall-event-button btn btn-secondary'
+  button.textContent = recallEvent.id
+  return button
+}
+
 function getMemories(){
   fetch(MEMORIES_URL, {mode: 'cors'})
   .then(res => res.json())
-  // .then(json => makeMemoryCards(makeMemories(json))) //production
-  .then(json => console.log(json)) //test 
+  .then(json => makeMemoryCards(makeMemories(json))) //production
+  // .then(json => console.log(json)) //test 
   .catch(error => console.log(error))
 }
 
