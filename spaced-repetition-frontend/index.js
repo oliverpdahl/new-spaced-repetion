@@ -13,10 +13,11 @@ class Memory {
 }
 
 class RecallEvent {
-  constructor(id, memory_id, daysDistant){
+  constructor(id, memory_id, daysDistant, complete){
     this.id = id
     this.memory_id = memory_id
     this.daysDistant = daysDistant
+    this.complete = complete
   }
 }
 
@@ -61,11 +62,6 @@ function makeMemoryCard(memory){
   let recall_buttons = document.createElement('div')
   recall_buttons.className = 'row d-flex flex-wrap recall-buttons-container'
 
-  console.log(memory.recallEvents)
-  for(const recallEvent of memory.recallEvents){
-    recall_buttons.appendChild(makeRecallEventButton(recallEvent))
-  }
-
   cardHeader.appendChild(deleteButton)
   card.appendChild(cardHeader);
   cardBody.appendChild(cardTitle);
@@ -74,6 +70,12 @@ function makeMemoryCard(memory){
   cardFooter.appendChild(recall_buttons);
   memoryContainer.prepend(card)
   addDeleteEventListener(deleteButton, card, memory)
+
+  for(const recallEvent of memory.recallEvents){
+    button = makeRecallEventButton(recallEvent)
+    recall_buttons.appendChild(button)
+    addCompleteEventListener(button, card, recallEvent)
+  }
 }
 
 function makeMemoryCards(memories){
@@ -85,7 +87,7 @@ function makeMemoryCards(memories){
 //MAKING RECALL EVENTS
 
 function makeRecallEvent(hash){
-  recallEvent = new RecallEvent(hash.id, hash.memory_id, hash.daysDistant)
+  recallEvent = new RecallEvent(hash.id, hash.memory_id, hash.daysDistant, hash.complete)
   return recallEvent
 }
 
@@ -104,7 +106,7 @@ function makeRecallEventButton(recallEvent){
   let checkedContainer = document.createElement('span')
   checkedContainer.innerHTML = setCheck(recallEvent)
   button.appendChild(checkedContainer)
-  
+
   button.innerText = `Date: ${daysDistant}`
   return button
 }
@@ -115,7 +117,7 @@ function setCheck(recallEvent){
   return (recallEvent.complete) ? checked : unchecked
 }
 
-addCompleteEventListener(button, card, recallEvent){
+function addCompleteEventListener(button, card, recallEvent){
   button.addEventListener('click', () => {
     recallEvent.complete = !recallEvent.complete
     fetch(`${MEMORIES_URL}/${recallEvent.memory_id}/recall_events/${recallEvent.id}`, {
