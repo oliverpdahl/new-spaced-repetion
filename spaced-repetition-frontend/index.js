@@ -32,8 +32,17 @@ function makeMemoryCard(memory){
 
   let cardTitle = document.createElement('h4');
   cardTitle.className = 'card-title';
-
   cardTitle.textContent = memory.title;
+
+  let cardHeader = document.createElement('div');
+  cardHeader.className = 'card-header text-right';
+
+  let deleteButton = document.createElement('button')
+  deleteButton.className = 'btn btn-sm btn-danger'
+  deleteButton.innerHTML = '<i class="fa fa-trash" aria-hidden="true"></i>'
+  
+  cardHeader.appendChild(deleteButton)
+  card.appendChild(cardHeader);
   cardBody.appendChild(cardTitle);
   card.appendChild(cardBody);
   memoryContainer.prepend(card)
