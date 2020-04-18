@@ -13,12 +13,12 @@ class Memory {
 }
 
 class RecallEvent {
-  constructor(id, memory_id, daysDistant, scheduledDate){
+  constructor(id, memory_id, daysDistant, complete, scheduledDate){
     this.id = id
     this.memory_id = memory_id
     this.daysDistant = daysDistant
     this.complete = complete
-    this.scheduledDate = this.scheduledDate
+    this.scheduledDate = scheduledDate
   }
 }
 
