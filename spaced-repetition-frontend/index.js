@@ -70,6 +70,14 @@ function makeRecallEvent(hash){
   return new RecallEvent(hash.id)
 }
 
+function makeRecallEvents(recallEventsHash){
+  let recallEventArray = []
+  for(const hash in recallEventsHash){
+    recallEventArray.push(makeRecallEvent(hash))
+  }
+  return recallEventsArray
+}
+
 function getMemories(){
   fetch(MEMORIES_URL, {mode: 'cors'})
   .then(res => res.json())
