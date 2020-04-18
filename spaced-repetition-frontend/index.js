@@ -17,6 +17,8 @@ class RecallEvent {
   }
 }
 
+//MAKING MEMORIES
+
 function makeMemory(hash){
   //This is here so that get and set methods can be employ
   return new Memory(hash.id, hash.title)
@@ -60,6 +62,12 @@ function makeMemoryCards(memories){
   for(const memory of memories){
     makeMemoryCard(memory);
   }
+}
+
+//MAKING RECALL EVENTS
+
+function makeRecallEvent(hash){
+  return new RecallEvent(hash.id)
 }
 
 function getMemories(){
