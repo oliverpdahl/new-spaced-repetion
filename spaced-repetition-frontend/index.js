@@ -208,7 +208,14 @@ newMemoryForm.addEventListener('submit', event => {
     category: event.target[2].value
   }
   postMemory(memory_data)
+  clearNewMemoryForm();
 })
+
+function clearNewMemoryForm() {
+  event.target[0].value =''
+  event.target[1].value =''
+  event.target[2].value =''
+}
 
 function addDeleteEventListener(button, card, memory){
   button.addEventListener('click', () => {
