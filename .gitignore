@@ -56,3 +56,6 @@ spaced-repetition-backend/db/development.sqlite3
 *.log
 spaced-repetition-backend/tmp/cache/bootsnap-load-path-cache
 git config --global core.excludesfile '~/.gitignore_global
+spaced-repetition-backend/tmp/cache/bootsnap-compile-cache/10/5571f60aa1242b
+spaced-repetition-backend/tmp/cache/bootsnap-compile-cache/23/9ee24985fe4f41
+spaced-repetition-backend/tmp/cache/bootsnap-compile-cache/2d/bb7a559e2d0306

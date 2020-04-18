@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_17_143719) do
+ActiveRecord::Schema.define(version: 2020_04_18_113650) do
 
   create_table "memories", force: :cascade do |t|
     t.string "title"
@@ -18,4 +18,12 @@ ActiveRecord::Schema.define(version: 2020_04_17_143719) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "recall_events", force: :cascade do |t|
+    t.integer "memory_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["memory_id"], name: "index_recall_events_on_memory_id"
+  end
+
+  add_foreign_key "recall_events", "memories"
 end
