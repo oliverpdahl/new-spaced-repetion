@@ -7,4 +7,8 @@ class MemoriesController < ApplicationController
     memory = Memory.create(title: params['title'])
     render json: memory
   end
+
+  def destroy 
+    Memory.find(params['id']).destroy
+  end
 end
