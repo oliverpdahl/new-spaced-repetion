@@ -83,6 +83,21 @@ newMemoryForm.addEventListener('submit', event => {
   postMemory(memory_data)
 })
 
+function addDeleteEventListener(button, card, memory){
+  button.addEventListener('click', event => {
+    fetch(MEMORIES_URL, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify(memory)
+    })
+    .then(response => card.style.display = 'none')
+    .catch(error => console.log(error))
+  })
+}
+
 document.addEventListener("DOMContentLoaded", () =>{
   getMemories();
 })
