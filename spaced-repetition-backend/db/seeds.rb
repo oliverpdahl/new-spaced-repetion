@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 memories = [{ title:'Factfullness Book', start_date: (Date.today - 50)}, 
             {title: 'Visual Studio Code Shortcuts', start_date: (Date.today - 25)}, 
-            {title: 'Central American Capitals', start_date: (Date.today - 3)}]
+            {title: 'Central American Capitals', start_date: (Date.today - 1)}]
 
 
 memories.each do |mem|
