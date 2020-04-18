@@ -10,7 +10,7 @@ class Memory {
     this.title = title
     this.category = category
     this.strategy = strategy
-    this.startDate = stateDate
+    this.startDate = startDate
     this.recallEvents = []
   }
 }
@@ -64,7 +64,7 @@ function makeMemoryCard(memory){
   deleteButton.innerHTML = '<i class="fa fa-trash" aria-hidden="true"></i>'
 
   let categoryBadge = document.createElement('span')
-  categoryBadge.className = 'badge badge-pill badge-info'
+  categoryBadge.className = 'badge badge-pill badge-info mr-2'
   categoryBadge.innerText = memory.category
 
   let strategy = document.createElement('p')
@@ -73,7 +73,7 @@ function makeMemoryCard(memory){
 
   let startDate = document.createElement('h6')
   startDate.className = 'card-subtitle mb-2 text-muted'
-  startDate.innerText = memory.startDate
+  startDate.innerText = `Started on ${memory.startDate}`
 
   let recall_buttons = document.createElement('div')
   recall_buttons.className = 'row d-flex flex-wrap recall-buttons-container'
