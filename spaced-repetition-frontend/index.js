@@ -8,6 +8,13 @@ class Memory {
   constructor(id, title){
     this.id = id,
     this.title = title
+    this._recall_buttons = []
+  }
+  get recall_buttons(){
+    return this._recall_buttons
+  }
+  set recall_buttons(buttonsArray){
+    this._recall_buttons = buttonsArray
   }
 }
 
@@ -49,6 +56,12 @@ function makeMemoryCard(memory){
   let deleteButton = document.createElement('button')
   deleteButton.className = 'btn btn-sm btn-danger'
   deleteButton.innerHTML = '<i class="fa fa-trash" aria-hidden="true"></i>'
+
+  let recall_buttons = document.createElement('div')
+  recall_buttons.className = 'row recall-buttons-container'
+
+  
+
   
   cardHeader.appendChild(deleteButton)
   card.appendChild(cardHeader);
