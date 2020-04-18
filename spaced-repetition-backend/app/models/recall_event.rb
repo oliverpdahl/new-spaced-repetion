@@ -3,6 +3,7 @@ class RecallEvent < ApplicationRecord
   after_create :set_scheduled_date
 
   def set_scheduled_date
-    scheduled_date = memory.start_date + daysDistant
+    self.scheduled_date = memory.start_date + daysDistant
+    self.save
   end
 end
