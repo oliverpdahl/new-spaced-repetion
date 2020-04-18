@@ -128,7 +128,7 @@ function addCompleteEventListener(button, card, recallEvent){
     .then(res => res.json())
     .then(json => {
       recallEvent = makeRecallEvent(json)
-      button.innerHTML = makeRecallEventButton(recallEvent)
+      button.innerHTML = makeRecallEventButton(recallEvent).innerHTML
     })
     .catch(error => console.log(error))
   })
