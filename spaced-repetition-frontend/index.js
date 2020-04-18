@@ -5,11 +5,12 @@ const newMemoryForm = document.getElementById('new-memory-form')
 // const newMemoryFormSubmit = document.getElementById('new-memory-form-submit')
 
 class Memory {
-  constructor(id, title, category, strategy){
+  constructor(id, title, category, strategy, startDate){
     this.id = id,
     this.title = title
     this.category = category
     this.strategy = strategy
+    this.startDate = stateDate
     this.recallEvents = []
   }
 }
@@ -28,7 +29,7 @@ class RecallEvent {
 
 function makeMemory(hash){
   //This is here so that get and set methods can be employ
-  memory = new Memory(hash.id, hash.title, hash.category, hash.strategy)
+  memory = new Memory(hash.id, hash.title, hash.category, hash.strategy, hash.start_date)
   memory.recallEvents = makeRecallEvents(hash.recall_events)
   return memory
 }
@@ -70,6 +71,10 @@ function makeMemoryCard(memory){
   strategy.className = 'card-text'
   strategy.innerText = memory.strategy
 
+  let startDate = document.createElement('h6')
+  startDate.className = 'card-subtitle mb-2 text-muted'
+  startDate.innerText = memory.startDate
+
   let recall_buttons = document.createElement('div')
   recall_buttons.className = 'row d-flex flex-wrap recall-buttons-container'
 
@@ -77,6 +82,7 @@ function makeMemoryCard(memory){
   cardHeader.appendChild(deleteButton)
   card.appendChild(cardHeader);
   cardBody.appendChild(cardTitle);
+  cardBody.appendChild(startDate)
   cardBody.appendChild(strategy)
   card.appendChild(cardBody);
   card.appendChild(cardFooter);
