@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2020_04_18_113650) do
     t.integer "memory_id", null: false
     t.integer "daysDistant"
     t.boolean "complete", default: false
+    t.date "scheduled_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["memory_id"], name: "index_recall_events_on_memory_id"

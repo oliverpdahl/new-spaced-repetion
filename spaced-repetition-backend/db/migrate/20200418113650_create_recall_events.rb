@@ -4,6 +4,7 @@ class CreateRecallEvents < ActiveRecord::Migration[6.0]
       t.references :memory, null: false, foreign_key: true
       t.integer :daysDistant
       t.boolean :complete, default: false
+      t.date :scheduled_date
       
       t.timestamps
     end
