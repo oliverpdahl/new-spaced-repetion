@@ -5,14 +5,15 @@ const newMemoryForm = document.getElementById('new-memory-form')
 // const newMemoryFormSubmit = document.getElementById('new-memory-form-submit')
 
 class Memory {
-  constructor(title){
+  constructor(id, title){
+    this.id = id
     this.title = title;
   }
 }
 
 function makeMemory(hash){
   //This is here so that get and set methods can be employ
-  return new Memory(hash.title)
+  return new Memory(hash.id, hash.title)
 }
 
 function makeMemories(memoryHash){
@@ -46,6 +47,7 @@ function makeMemoryCard(memory){
   cardBody.appendChild(cardTitle);
   card.appendChild(cardBody);
   memoryContainer.prepend(card)
+  addDeleteEventListener(deleteButton, card, memory)
 }
 
 function makeMemoryCards(memories){
@@ -85,7 +87,7 @@ newMemoryForm.addEventListener('submit', event => {
 
 function addDeleteEventListener(button, card, memory){
   button.addEventListener('click', event => {
-    fetch(MEMORIES_URL, {
+    fetch(`${MEMORIES_URL}/${memory.id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -93,7 +95,7 @@ function addDeleteEventListener(button, card, memory){
       },
       body: JSON.stringify(memory)
     })
-    .then(response => card.style.display = 'none')
+    .then(card.style.display = 'none')
     .catch(error => console.log(error))
   })
 }
