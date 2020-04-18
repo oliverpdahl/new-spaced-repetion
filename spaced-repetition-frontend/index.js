@@ -8,13 +8,13 @@ class Memory {
   constructor(id, title){
     this.id = id,
     this.title = title
-    this._recall_buttons = []
+    this._recallEvents = []
   }
-  get recall_buttons(){
-    return this._recall_buttons
+  get recallEvents(){
+    return this._recallEvents
   }
-  set recall_buttons(buttonsArray){
-    this._recall_buttons = buttonsArray
+  set recallEvents(recallEventsArray){
+    this._recallEvents = recallEventsArray
   }
 }
 
@@ -28,7 +28,9 @@ class RecallEvent {
 
 function makeMemory(hash){
   //This is here so that get and set methods can be employ
-  return new Memory(hash.id, hash.title)
+  memory = new Memory(hash.id, hash.title)
+  memory.recallEvents = makeRecallEvents(hash.recall_events)
+  return memory
 }
 
 function makeMemories(memoryHash){
@@ -58,11 +60,9 @@ function makeMemoryCard(memory){
   deleteButton.innerHTML = '<i class="fa fa-trash" aria-hidden="true"></i>'
 
   let recall_buttons = document.createElement('div')
-  recall_buttons.className = 'row recall-buttons-container'
+  recall_buttons.className = 'row-fluid recall-buttons-container'
 
-  
 
-  
   cardHeader.appendChild(deleteButton)
   card.appendChild(cardHeader);
   cardBody.appendChild(cardTitle);
@@ -93,7 +93,7 @@ function makeRecallEvents(recallEventsHash){
 
 function makeRecallEventButton(recallEvent){
   let button = document.createElement('button')
-  button.class = 'recall-event-button btn btn-secondary'
+  button.class = 'recall-event-button btn btn-secondary span3'
   button.textContent = recallEvent.id
   return button
 }
@@ -101,8 +101,8 @@ function makeRecallEventButton(recallEvent){
 function getMemories(){
   fetch(MEMORIES_URL, {mode: 'cors'})
   .then(res => res.json())
-  .then(json => makeMemoryCards(makeMemories(json))) //production
-  // .then(json => console.log(json)) //test 
+  // .then(json => makeMemoryCards(makeMemories(json))) //production
+  .then(json => console.log(json)) //test 
   .catch(error => console.log(error))
 }
 
