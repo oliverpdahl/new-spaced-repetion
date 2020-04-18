@@ -101,8 +101,18 @@ function makeRecallEventButton(recallEvent){
   let button = document.createElement('button')
   button.className = 'btn btn-secondary recall-event-button m-1'
   
-  button.innerHTML = `<i class="fa fa-check-circle-o" aria-hidden="true"></i> Date: ${recallEvent.daysDistant}`
+  let checkedContainer = document.createElement('span')
+  checkedContainer.innerHTML = setCheck(recallEvent)
+  button.appendChild(checkedContainer)
+  
+  button.innerText = `Date: ${daysDistant}`
   return button
+}
+
+function setCheck(recallEvent){
+  const unchecked = '<i class="fa fa-check-circle-o" aria-hidden="true"></i>'
+  const checked = '<i class="fa fa-check-circle" aria-hidden="true"></i>'
+  return (recallEvent.complete) ? checked : unchecked
 }
 
 addCompleteEventListener(button, card, recallEvent){
