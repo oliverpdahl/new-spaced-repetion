@@ -102,9 +102,9 @@ function makeRecallEvents(recallEventsHash){
 
 function makeRecallEventButton(recallEvent){
   let button = document.createElement('button')
-  button.className = 'btn btn-secondary recall-event-button m-1'
+  button.className = 'btn btn-outline-primary recall-event-button m-1'
   
-  let message = `Date: ${recallEvent.scheduledDate}`
+  let message = `${recallEvent.scheduledDate}`
   button.innerHTML = `${setCheck(recallEvent)} ${message}`
   return button
 }
