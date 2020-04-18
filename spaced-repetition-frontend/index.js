@@ -19,8 +19,9 @@ class Memory {
 }
 
 class RecallEvent {
-  constructor(id){
+  constructor(id, memory_id){
     this.id = id
+    this.memory_id = memory_id
   }
 }
 
@@ -45,15 +46,18 @@ function makeMemoryCard(memory){
   let card = document.createElement('div');
   card.className = 'card';
 
-  let cardBody = document.createElement('div');
-  cardBody.className = 'card-body';
-
   let cardTitle = document.createElement('h4');
   cardTitle.className = 'card-title';
   cardTitle.textContent = memory.title;
 
   let cardHeader = document.createElement('div');
   cardHeader.className = 'card-header text-right';
+
+  let cardBody = document.createElement('div');
+  cardBody.className = 'card-body';
+
+  let cardFooter = document.createElement('div')
+  cardFooter.className = 'card-footer'
 
   let deleteButton = document.createElement('button')
   deleteButton.className = 'btn btn-sm btn-danger'
@@ -62,11 +66,16 @@ function makeMemoryCard(memory){
   let recall_buttons = document.createElement('div')
   recall_buttons.className = 'row-fluid recall-buttons-container'
 
+  for(const recallEvent in memory.recallEvents){
+    recall_buttons.appendChild(makeRecallEventButton(recallEvent))
+  }
 
   cardHeader.appendChild(deleteButton)
   card.appendChild(cardHeader);
   cardBody.appendChild(cardTitle);
   card.appendChild(cardBody);
+  card.appendChild(cardFooter);
+  cardFooter.appendChild(recall_buttons);
   memoryContainer.prepend(card)
   addDeleteEventListener(deleteButton, card, memory)
 }
@@ -80,13 +89,13 @@ function makeMemoryCards(memories){
 //MAKING RECALL EVENTS
 
 function makeRecallEvent(hash){
-  return new RecallEvent(hash.id)
+  return new RecallEvent(hash.id, hash.memory_id)
 }
 
 function makeRecallEvents(recallEventsHash){
-  let recallEventArray = []
+  let recallEventsArray = []
   for(const hash in recallEventsHash){
-    recallEventArray.push(makeRecallEvent(hash))
+    recallEventsArray.push(makeRecallEvent(hash))
   }
   return recallEventsArray
 }
@@ -94,14 +103,14 @@ function makeRecallEvents(recallEventsHash){
 function makeRecallEventButton(recallEvent){
   let button = document.createElement('button')
   button.class = 'recall-event-button btn btn-secondary span3'
-  button.textContent = recallEvent.id
+  button.textContent = `${recallEvent.id} memory: ${recallEvent.memory_id}`
   return button
 }
 
 function getMemories(){
   fetch(MEMORIES_URL, {mode: 'cors'})
   .then(res => res.json())
-  // .then(json => makeMemoryCards(makeMemories(json))) //production
+  .then(json => makeMemoryCards(makeMemories(json))) //production
   .then(json => console.log(json)) //test 
   .catch(error => console.log(error))
 }
