@@ -5,9 +5,11 @@ const newMemoryForm = document.getElementById('new-memory-form')
 // const newMemoryFormSubmit = document.getElementById('new-memory-form-submit')
 
 class Memory {
-  constructor(id, title){
+  constructor(id, title, category, strategy){
     this.id = id,
     this.title = title
+    this.category = category
+    this.strategy = strategy
     this.recallEvents = []
   }
 }
@@ -26,7 +28,7 @@ class RecallEvent {
 
 function makeMemory(hash){
   //This is here so that get and set methods can be employ
-  memory = new Memory(hash.id, hash.title)
+  memory = new Memory(hash.id, hash.title, hash.category, hash.strategy)
   memory.recallEvents = makeRecallEvents(hash.recall_events)
   return memory
 }
@@ -60,12 +62,22 @@ function makeMemoryCard(memory){
   deleteButton.className = 'btn btn-sm btn-danger'
   deleteButton.innerHTML = '<i class="fa fa-trash" aria-hidden="true"></i>'
 
+  let categoryBadge = document.createElement('span')
+  categoryBadge.className = 'badge badge-pill badge-info'
+  categoryBadge.innerText = memory.category
+
+  let strategy = document.createElement('p')
+  strategy.className = 'card-text'
+  strategy.innerText = memory.strategy
+
   let recall_buttons = document.createElement('div')
   recall_buttons.className = 'row d-flex flex-wrap recall-buttons-container'
 
+  cardHeader.appendChild(categoryBadge)
   cardHeader.appendChild(deleteButton)
   card.appendChild(cardHeader);
   cardBody.appendChild(cardTitle);
+  cardBody.appendChild(strategy)
   card.appendChild(cardBody);
   card.appendChild(cardFooter);
   cardFooter.appendChild(recall_buttons);
