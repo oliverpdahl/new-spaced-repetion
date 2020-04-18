@@ -10,6 +10,7 @@ class MemoriesController < ApplicationController
   end
 
   def destroy 
-    Memory.find(params['id']).destroy
+    memory  = Memory.find(params['id'])
+    memory.destroy
   end
 end

@@ -10,12 +10,6 @@ class Memory {
     this.title = title
     this.recallEvents = []
   }
-  // get recallEvents(){
-  //   return this._recallEvents
-  // }
-  // set recallEvents(recallEventsArray){
-  //   this._recallEvents = recallEventsArray
-  // }
 }
 
 class RecallEvent {
@@ -112,7 +106,7 @@ function getMemories(){
   fetch(MEMORIES_URL, {mode: 'cors'})
   .then(res => res.json())
   .then(json => makeMemoryCards(makeMemories(json))) //production
-  .then(json => console.log(json)) //test 
+  //.then(json => console.log(json)) //test 
   .catch(error => console.log(error))
 }
 
@@ -139,7 +133,7 @@ newMemoryForm.addEventListener('submit', event => {
 })
 
 function addDeleteEventListener(button, card, memory){
-  button.addEventListener('click', event => {
+  button.addEventListener('click', () => {
     fetch(`${MEMORIES_URL}/${memory.id}`, {
       method: "DELETE",
       headers: {
@@ -148,6 +142,7 @@ function addDeleteEventListener(button, card, memory){
       },
       body: JSON.stringify(memory)
     })
+    //.then(response => console.log(response.json()))
     .then(card.style.display = 'none')
     .catch(error => console.log(error))
   })
