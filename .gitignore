@@ -48,3 +48,11 @@ jspm_packages
 /config/master.key
 
 spaced-repetition-backend/db/development.sqlite3
+spaced-repetition-backend/tmp/cache/bootsnap-load-path-cache
+spaced-repetition-backend/log/development.log
+spaced-repetition-backend/db/development.sqlite3
+.DS_Store
+*.sqlite3
+*.log
+spaced-repetition-backend/tmp/cache/bootsnap-load-path-cache
+git config --global core.excludesfile '~/.gitignore_global
