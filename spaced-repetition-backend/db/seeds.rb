@@ -5,9 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-titles = ['Factfullness Book', 'Visual Studio Code Shortcuts', 'Central American Capitals']
+memories = [{ title:'Factfullness Book', start_date: (Date.today - 50)}, 
+            {title: 'Visual Studio Code Shortcuts', start_date: (Date.today - 25)}, 
+            {title: 'Central American Capitals', start_date: (Date.today - 3)}]
 
-titles.each do |title|
-  memory = Memory.create(title: title)
+
+memories.each do |mem|
+  memory = Memory.create(title: mem.title, start_date: mem.date)
   memory.create_recall_events
 end
