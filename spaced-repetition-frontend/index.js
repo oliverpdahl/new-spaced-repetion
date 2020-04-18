@@ -64,7 +64,7 @@ function makeMemoryCard(memory){
   deleteButton.innerHTML = '<i class="fa fa-trash" aria-hidden="true"></i>'
 
   let categoryBadge = document.createElement('span')
-  categoryBadge.className = 'badge badge-pill badge-info mr-2'
+  categoryBadge.className = 'badge badge-pill badge-primary mr-2'
   categoryBadge.innerText = memory.category
 
   let strategy = document.createElement('p')
