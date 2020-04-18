@@ -13,11 +13,12 @@ class Memory {
 }
 
 class RecallEvent {
-  constructor(id, memory_id, daysDistant, complete){
+  constructor(id, memory_id, daysDistant, scheduledDate){
     this.id = id
     this.memory_id = memory_id
     this.daysDistant = daysDistant
     this.complete = complete
+    this.scheduledDate = this.scheduledDate
   }
 }
 
@@ -87,7 +88,7 @@ function makeMemoryCards(memories){
 //MAKING RECALL EVENTS
 
 function makeRecallEvent(hash){
-  recallEvent = new RecallEvent(hash.id, hash.memory_id, hash.daysDistant, hash.complete)
+  recallEvent = new RecallEvent(hash.id, hash.memory_id, hash.daysDistant, hash.complete, hash.scheduled_date)
   return recallEvent
 }
 
@@ -103,7 +104,7 @@ function makeRecallEventButton(recallEvent){
   let button = document.createElement('button')
   button.className = 'btn btn-secondary recall-event-button m-1'
   
-  let message = `Date: ${recallEvent.daysDistant}`
+  let message = `Date: ${recallEvent.scheduledDate}`
   button.innerHTML = `${setCheck(recallEvent)} ${message}`
   return button
 }
