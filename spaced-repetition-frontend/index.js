@@ -103,11 +103,8 @@ function makeRecallEventButton(recallEvent){
   let button = document.createElement('button')
   button.className = 'btn btn-secondary recall-event-button m-1'
   
-  let checkedContainer = document.createElement('span')
-  checkedContainer.innerHTML = setCheck(recallEvent)
-  button.appendChild(checkedContainer)
-
-  button.innerText = `Date: ${daysDistant}`
+  let message = `Date: ${recallEvent.daysDistant}`
+  button.innerHTML = `${setCheck(recallEvent)} ${message}`
   return button
 }
 
@@ -119,7 +116,6 @@ function setCheck(recallEvent){
 
 function addCompleteEventListener(button, card, recallEvent){
   button.addEventListener('click', () => {
-    recallEvent.complete = !recallEvent.complete
     fetch(`${MEMORIES_URL}/${recallEvent.memory_id}/recall_events/${recallEvent.id}`, {
       method: "PATCH",
       headers: {
@@ -129,7 +125,11 @@ function addCompleteEventListener(button, card, recallEvent){
       body: JSON.stringify(recallEvent)
     })
     //.then(response => console.log(response.json()))
-    .then(card.style.display = 'none')
+    .then(res => res.json())
+    .then(json => {
+      recallEvent = makeRecallEvent(json)
+      button.innerHTML = makeRecallEventButton(recallEvent)
+    })
     .catch(error => console.log(error))
   })
 }
