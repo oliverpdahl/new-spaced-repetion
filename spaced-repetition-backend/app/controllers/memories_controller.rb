@@ -5,7 +5,8 @@ class MemoriesController < ApplicationController
 
   def create 
     memory = Memory.create(title: params['title'])
-    render json: memory
+    memory.create_recall_events
+    render json: memory [:recall_events]
   end
 
   def destroy 
