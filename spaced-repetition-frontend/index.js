@@ -102,11 +102,30 @@ function makeRecallEvents(recallEventsHash){
 
 function makeRecallEventButton(recallEvent){
   let button = document.createElement('button')
-  button.className = 'btn btn-outline-primary recall-event-button m-1'
+  button.className = `btn btn-outline-${setRecallButtonClass(recallEvent)} recall-event-button m-1`
   
   let message = `${recallEvent.scheduledDate}`
   button.innerHTML = `${setCheck(recallEvent)} ${message}`
+  disableIfAfterToday(button, recallEvent)
   return button
+}
+
+function disableIfAfterToday(button, recallEvent){
+  const dateAfterToday = Date.parse(recallEvent.scheduledDate) > new Date()
+  button.disabled = (dateAfterToday) ? true : false
+}
+function setRecallButtonClass(recallEvent){
+  let threeDaysAgo = new Date();
+  threeDaysAgo.setDate(threeDaysAgo.getDate() - 3)
+  console.log(new Date() - 3)
+  const dateBeforeToday = Date.parse(recallEvent.scheduledDate) < threeDaysAgo
+  if(recallEvent.complete){
+    return 'success'
+  } else if(dateBeforeToday) {
+    return 'warning'
+  } else {
+    return 'primary'
+  }
 }
 
 function setCheck(recallEvent){
