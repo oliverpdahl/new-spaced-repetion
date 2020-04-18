@@ -100,9 +100,28 @@ function makeRecallEvents(recallEventsHash){
 function makeRecallEventButton(recallEvent){
   let button = document.createElement('button')
   button.className = 'btn btn-secondary recall-event-button m-1'
-  button.innerText = `${recallEvent.id} memory: ${recallEvent.memory_id}, daysDistant: ${recallEvent.daysDistant}`
+  
+  button.innerHTML = `<i class="fa fa-check-circle-o" aria-hidden="true"></i> Date: ${recallEvent.daysDistant}`
   return button
 }
+
+addCompleteEventListener(button, card, recallEvent){
+  button.addEventListener('click', () => {
+    recallEvent.complete = !recallEvent.complete
+    fetch(`${MEMORIES_URL}/${recallEvent.memory_id}/recall_events/${recallEvent.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify(recallEvent)
+    })
+    //.then(response => console.log(response.json()))
+    .then(card.style.display = 'none')
+    .catch(error => console.log(error))
+  })
+}
+
 
 function getMemories(){
   fetch(MEMORIES_URL, {mode: 'cors'})
