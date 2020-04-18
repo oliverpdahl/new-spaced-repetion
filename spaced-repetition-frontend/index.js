@@ -1,6 +1,8 @@
 const BASE_URL = "http://localhost:3000"
 const MEMORIES_URL = `${BASE_URL}/memories`
-const MEMORY_CONTAINER = document.getElementById('memory-cards')
+const memoryContainer = document.getElementById('memory-cards')
+const newMemoryForm = document.getElementById('new-memory-form')
+// const newMemoryFormSubmit = document.getElementById('new-memory-form-submit')
 
 class Memory {
   constructor(title){
@@ -34,7 +36,7 @@ function makeMemoryCard(memory){
   cardTitle.textContent = memory.title;
   cardBody.appendChild(cardTitle);
   card.appendChild(cardBody);
-  MEMORY_CONTAINER.prepend(card)
+  memoryContainer.prepend(card)
 }
 
 function makeMemoryCards(memories){
@@ -64,8 +66,14 @@ function postMemory(memory_data){
   .catch(error => console.log(error))
 }
 
+newMemoryForm.addEventListener('submit', event => {
+  event.preventDefault()
+  let memory_data = {
+    title: event.target[0].value
+  }
+  postMemory(memory_data)
+})
+
 document.addEventListener("DOMContentLoaded", () =>{
   getMemories();
-  let testMemoryData = {title: "Silly Hat"}
-  postMemory(testMemoryData)
 })
