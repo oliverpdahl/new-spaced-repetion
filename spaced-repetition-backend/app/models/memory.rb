@@ -1,3 +1,3 @@
 class Memory < ApplicationRecord
-  has_many :`recall_events
+  has_many :recall_events
 end
