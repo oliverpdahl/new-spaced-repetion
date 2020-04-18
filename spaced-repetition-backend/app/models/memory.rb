@@ -6,10 +6,11 @@ class Memory < ApplicationRecord
   }.freeze
 
   def create_recall_events
-    schedule = self.class.schedules[scheduleKey]
+    schedule = self.class.schedules[scheduleKey.to_sym]
     schedule.each do |days_distant|
       recall_events.build(daysDistant: days_distant)
     end
+    save
   end
 
   def self.schedules
