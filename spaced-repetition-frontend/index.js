@@ -140,7 +140,6 @@ function setRecallButtonClass(button, recallEvent){
 function setRecallButtonStatus(recallEvent){
   let threeDaysAgo = new Date();
   threeDaysAgo.setDate(threeDaysAgo.getDate() - 3)
-  console.log(new Date() - 3)
   const dateBeforeToday = Date.parse(recallEvent.scheduledDate) < threeDaysAgo
   if(recallEvent.complete){
     return 'success'
@@ -204,7 +203,9 @@ function postMemory(memory_data){
 newMemoryForm.addEventListener('submit', event => {
   event.preventDefault()
   let memory_data = {
-    title: event.target[0].value
+    title: event.target[0].value,
+    strategy: event.target[1].value,
+    category: event.target[2].value
   }
   postMemory(memory_data)
 })
