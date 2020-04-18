@@ -11,6 +11,6 @@ memories = [{ title:'Factfullness Book', start_date: (Date.today - 50)},
 
 
 memories.each do |mem|
-  memory = Memory.create(title: mem.title, start_date: mem.date)
+  memory = Memory.create(title: mem[:title], start_date: mem[:start_date])
   memory.create_recall_events
 end
