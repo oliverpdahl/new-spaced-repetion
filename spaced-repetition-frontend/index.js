@@ -6,8 +6,14 @@ const newMemoryForm = document.getElementById('new-memory-form')
 
 class Memory {
   constructor(id, title){
+    this.id = id,
+    this.title = title
+  }
+}
+
+class RecallEvent {
+  constructor(id){
     this.id = id
-    this.title = title;
   }
 }
 
