@@ -102,7 +102,8 @@ function makeRecallEvents(recallEventsHash){
 
 function makeRecallEventButton(recallEvent){
   let button = document.createElement('button')
-  button.className = `btn btn-outline-${setRecallButtonClass(recallEvent)} recall-event-button m-1`
+  setRecallButtonClass(button, recallEvent)
+  
   
   let message = `${recallEvent.scheduledDate}`
   button.innerHTML = `${setCheck(recallEvent)} ${message}`
@@ -114,7 +115,11 @@ function disableIfAfterToday(button, recallEvent){
   const dateAfterToday = Date.parse(recallEvent.scheduledDate) > new Date()
   button.disabled = (dateAfterToday) ? true : false
 }
-function setRecallButtonClass(recallEvent){
+function setRecallButtonClass(button, recallEvent){
+  button.className = `btn btn-outline-${setRecallButtonStatus(recallEvent)} recall-event-button m-1`
+}
+
+function setRecallButtonStatus(recallEvent){
   let threeDaysAgo = new Date();
   threeDaysAgo.setDate(threeDaysAgo.getDate() - 3)
   console.log(new Date() - 3)
@@ -149,6 +154,7 @@ function addCompleteEventListener(button, card, recallEvent){
     .then(json => {
       recallEvent = makeRecallEvent(json)
       button.innerHTML = makeRecallEventButton(recallEvent).innerHTML
+      setRecallButtonClass(button, recallEvent)
     })
     .catch(error => console.log(error))
   })
