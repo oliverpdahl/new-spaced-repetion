@@ -8,14 +8,14 @@ class Memory {
   constructor(id, title){
     this.id = id,
     this.title = title
-    this._recallEvents = []
+    this.recallEvents = []
   }
-  get recallEvents(){
-    return this._recallEvents
-  }
-  set recallEvents(recallEventsArray){
-    this._recallEvents = recallEventsArray
-  }
+  // get recallEvents(){
+  //   return this._recallEvents
+  // }
+  // set recallEvents(recallEventsArray){
+  //   this._recallEvents = recallEventsArray
+  // }
 }
 
 class RecallEvent {
@@ -66,7 +66,7 @@ function makeMemoryCard(memory){
   let recall_buttons = document.createElement('div')
   recall_buttons.className = 'row-fluid recall-buttons-container'
 
-  for(const recallEvent in memory.recallEvents){
+  for(const recallEvent of memory.recallEvents){
     recall_buttons.appendChild(makeRecallEventButton(recallEvent))
   }
 
@@ -89,12 +89,13 @@ function makeMemoryCards(memories){
 //MAKING RECALL EVENTS
 
 function makeRecallEvent(hash){
-  return new RecallEvent(hash.id, hash.memory_id)
+  recallEvent = new RecallEvent(hash.id, hash.memory_id)
+  return recallEvent
 }
 
 function makeRecallEvents(recallEventsHash){
   let recallEventsArray = []
-  for(const hash in recallEventsHash){
+  for(const hash of recallEventsHash){
     recallEventsArray.push(makeRecallEvent(hash))
   }
   return recallEventsArray
@@ -102,8 +103,8 @@ function makeRecallEvents(recallEventsHash){
 
 function makeRecallEventButton(recallEvent){
   let button = document.createElement('button')
-  button.class = 'recall-event-button btn btn-secondary span3'
-  button.textContent = `${recallEvent.id} memory: ${recallEvent.memory_id}`
+  button.className = 'btn btn-secondary recall-event-button span3'
+  button.innerText = `${recallEvent.id} memory: ${recallEvent.memory_id}`
   return button
 }
 
