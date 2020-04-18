@@ -59,7 +59,8 @@ function makeMemoryCards(memories){
 function getMemories(){
   fetch(MEMORIES_URL, {mode: 'cors'})
   .then(res => res.json())
-  .then(json => makeMemoryCards(makeMemories(json))) 
+  // .then(json => makeMemoryCards(makeMemories(json))) //production
+  .then(json => console.log(json)) //test 
   .catch(error => console.log(error))
 }
 
