@@ -13,12 +13,12 @@ memories = [{ title:'Factfullness Book',
             { title: 'Visual Studio Code Shortcuts', 
               start_date: (Date.today - 25),
               category: 'Shortcuts',
-              strategy: `Go through list and first try the action before looking at the command. Practice the ones where you didn't know the command three times`
+              strategy: "Go through list and first try the action before looking at the command. Practice the ones where you did not know the command three times"
             }, 
             { title: 'Central American Capitals', 
               start_date: (Date.today - 1),
               category: 'Geography',
-              strategy: `Go through quizlet until you get all of them right`
+              strategy: 'Go through quizlet until you get all of them right'
             }]
 
 

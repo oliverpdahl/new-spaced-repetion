@@ -16,6 +16,9 @@ ActiveRecord::Schema.define(version: 2020_04_18_113650) do
     t.string "title"
     t.string "scheduleKey", default: "super_memo"
     t.date "start_date", default: "2020-04-18"
+    t.string "strategy"
+    t.string "category"
+    t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
