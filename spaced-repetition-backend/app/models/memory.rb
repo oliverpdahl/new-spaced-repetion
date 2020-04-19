@@ -1,5 +1,6 @@
 class Memory < ApplicationRecord
   has_many :recall_events, dependent: :destroy
+  validates :title, presence: true
 
   SHEDULES = {
     super_memo: [1, 7, 16, 35]
