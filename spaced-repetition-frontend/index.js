@@ -60,7 +60,7 @@ function makeMemoryCard(memory){
   cardFooter.className = 'card-footer'
 
   let deleteButton = document.createElement('button')
-  deleteButton.className = 'btn btn-sm btn-danger'
+  deleteButton.className = 'btn btn-sm btn-dark'
   deleteButton.innerHTML = '<i class="fa fa-trash" aria-hidden="true"></i>'
 
   let categoryBadge = document.createElement('span')
