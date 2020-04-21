@@ -22,6 +22,22 @@ class RecallEvent {
     this.complete = complete
     this.scheduledDate = scheduledDate
   }
+
+  makeRecallEventButton(){
+    let button = document.createElement('button')
+    setRecallButtonClass(button, this)
+    
+    
+    let message = `${this.scheduledDate}`
+    button.innerHTML = `${setCheck(this)} ${message}`
+    this.disableIfAfterToday(button)
+    return button
+  }
+
+  disableIfAfterToday(button){
+    const dateAfterToday = Date.parse(this.scheduledDate) > new Date()
+    button.disabled = (dateAfterToday) ? true : false
+  }
 }
 
 //MAKING MEMORIES
@@ -90,7 +106,7 @@ function makeMemoryCard(memory){
   addDeleteEventListener(deleteButton, card, memory)
 
   for(const recallEvent of memory.recallEvents){
-    button = makeRecallEventButton(recallEvent)
+    button = recallEvent.makeRecallEventButton()
     recall_buttons.appendChild(button)
     addCompleteEventListener(button, card, recallEvent)
   }
@@ -117,21 +133,6 @@ function makeRecallEvents(recallEventsHash){
   return recallEventsArray
 }
 
-function makeRecallEventButton(recallEvent){
-  let button = document.createElement('button')
-  setRecallButtonClass(button, recallEvent)
-  
-  
-  let message = `${recallEvent.scheduledDate}`
-  button.innerHTML = `${setCheck(recallEvent)} ${message}`
-  disableIfAfterToday(button, recallEvent)
-  return button
-}
-
-function disableIfAfterToday(button, recallEvent){
-  const dateAfterToday = Date.parse(recallEvent.scheduledDate) > new Date()
-  button.disabled = (dateAfterToday) ? true : false
-}
 function setRecallButtonClass(button, recallEvent){
   button.className = `btn btn-outline-${setRecallButtonStatus(recallEvent)} recall-event-button m-1`
 }
@@ -168,7 +169,7 @@ function addCompleteEventListener(button, card, recallEvent){
     .then(res => res.json())
     .then(json => {
       recallEvent = makeRecallEvent(json)
-      button.innerHTML = makeRecallEventButton(recallEvent).innerHTML
+      button.innerHTML = recallEvent.makeRecallEventButton().innerHTML
       setRecallButtonClass(button, recallEvent)
     })
     .catch(error => console.log(error))
