@@ -2,7 +2,6 @@ const BASE_URL = "http://localhost:3000"
 const MEMORIES_URL = `${BASE_URL}/memories`
 const memoryContainer = document.getElementById('memory-cards')
 const newMemoryForm = document.getElementById('new-memory-form')
-// const newMemoryFormSubmit = document.getElementById('new-memory-form-submit')
 
 class Memory {
   constructor(id, title, category, strategy, startDate){
@@ -166,7 +165,6 @@ function addCompleteEventListener(button, card, recallEvent){
       },
       body: JSON.stringify(recallEvent)
     })
-    //.then(response => console.log(response.json()))
     .then(res => res.json())
     .then(json => {
       recallEvent = makeRecallEvent(json)
@@ -182,7 +180,6 @@ function getMemories(){
   fetch(MEMORIES_URL, {mode: 'cors'})
   .then(res => res.json())
   .then(json => makeMemoryCards(makeMemories(json))) //production
-  //.then(json => console.log(json)) //test 
   .catch(error => console.log(error))
 }
 
@@ -227,7 +224,6 @@ function addDeleteEventListener(button, card, memory){
       },
       body: JSON.stringify(memory)
     })
-    //.then(response => console.log(response.json()))
     .then(card.style.display = 'none')
     .catch(error => console.log(error))
   })

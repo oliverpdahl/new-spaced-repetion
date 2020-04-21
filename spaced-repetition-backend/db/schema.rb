@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 2020_04_18_113650) do
   create_table "memories", force: :cascade do |t|
     t.string "title"
     t.string "scheduleKey", default: "super_memo"
-    t.date "start_date", default: "2020-04-18"
+    t.date "start_date", default: "2020-04-21"
     t.string "strategy"
     t.string "category"
     t.string "description"
