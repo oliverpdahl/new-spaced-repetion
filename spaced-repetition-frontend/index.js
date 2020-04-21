@@ -38,6 +38,29 @@ class RecallEvent {
     const dateAfterToday = Date.parse(this.scheduledDate) > new Date()
     button.disabled = (dateAfterToday) ? true : false
   }
+
+  setRecallButtonClass(button){
+    button.className = `btn btn-outline-${this.setRecallButtonStatus()} recall-event-button m-1`
+  }
+  
+  setRecallButtonStatus(){
+    let threeDaysAgo = new Date();
+    threeDaysAgo.setDate(threeDaysAgo.getDate() - 3)
+    const dateBeforeToday = Date.parse(this.scheduledDate) < threeDaysAgo
+    if(this.complete){
+      return 'success'
+    } else if(dateBeforeToday) {
+      return 'warning'
+    } else {
+      return 'primary'
+    }
+  }
+  
+  setCheck(){
+    const unchecked = '<i class="fa fa-check-circle-o" aria-hidden="true"></i>'
+    const checked = '<i class="fa fa-check-circle" aria-hidden="true"></i>'
+    return (this.complete) ? checked : unchecked
+  }
 }
 
 //MAKING MEMORIES
