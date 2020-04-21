@@ -86,7 +86,7 @@ function makeMemoryCard(memory){
   card.appendChild(cardBody);
   card.appendChild(cardFooter);
   cardFooter.appendChild(recall_buttons);
-  memoryContainer.prepend(card)
+  memoryContainer.appendChild(card)
   addDeleteEventListener(deleteButton, card, memory)
 
   for(const recallEvent of memory.recallEvents){
@@ -228,6 +228,30 @@ function addDeleteEventListener(button, card, memory){
     .catch(error => console.log(error))
   })
 }
+
+const sortButton = document.getElementById('sort-memories-button')
+sortButton.addEventListener('click', () => {
+  fetch(MEMORIES_URL)
+  .then(res => res.json())
+  .then(json => {
+    json.sort(function(a, b) {
+      var titleA = a.title.toUpperCase(); // ignore upper and lowercase
+      var titleB = b.title.toUpperCase(); // ignore upper and lowercase
+      if (titleA < titleB) {
+        return -1;
+      }
+      if (titleA > titleB) {
+        return 1;
+      }
+    
+      // titles must be equal
+      return 0;
+    });
+    const memoriesSection = document.getElementById('memory-cards')
+    memoriesSection.innerHTML =''
+    makeMemoryCards(makeMemories(json))
+  })
+})
 
 document.addEventListener("DOMContentLoaded", () =>{
   getMemories();
