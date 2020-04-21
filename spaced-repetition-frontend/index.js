@@ -12,6 +12,61 @@ class Memory {
     this.startDate = startDate
     this.recallEvents = []
   }
+
+  makeMemoryCard(){
+    let card = document.createElement('div');
+    card.className = 'card';
+  
+    let cardTitle = document.createElement('h4');
+    cardTitle.className = 'card-title';
+    cardTitle.textContent = this.title;
+  
+    let cardHeader = document.createElement('div');
+    cardHeader.className = 'card-header text-right';
+  
+    let cardBody = document.createElement('div');
+    cardBody.className = 'card-body';
+  
+    let cardFooter = document.createElement('div')
+    cardFooter.className = 'card-footer'
+  
+    let deleteButton = document.createElement('button')
+    deleteButton.className = 'btn btn-sm btn-dark'
+    deleteButton.innerHTML = '<i class="fa fa-trash" aria-hidden="true"></i>'
+  
+    let categoryBadge = document.createElement('span')
+    categoryBadge.className = 'badge badge-pill badge-danger mr-2'
+    categoryBadge.innerText = this.category
+  
+    let strategy = document.createElement('p')
+    strategy.className = 'card-text'
+    strategy.innerText = this.strategy
+  
+    let startDate = document.createElement('h6')
+    startDate.className = 'card-subtitle mb-2 text-muted'
+    startDate.innerText = `Started on ${this.startDate}`
+  
+    let recall_buttons = document.createElement('div')
+    recall_buttons.className = 'row d-flex flex-wrap recall-buttons-container'
+  
+    cardHeader.appendChild(categoryBadge)
+    cardHeader.appendChild(deleteButton)
+    card.appendChild(cardHeader);
+    cardBody.appendChild(cardTitle);
+    cardBody.appendChild(startDate)
+    cardBody.appendChild(strategy)
+    card.appendChild(cardBody);
+    card.appendChild(cardFooter);
+    cardFooter.appendChild(recall_buttons);
+    memoryContainer.appendChild(card)
+    addDeleteEventListener(deleteButton, card, this)
+  
+    for(const recallEvent of this.recallEvents){
+      let button = recallEvent.makeRecallEventButton()
+      recall_buttons.appendChild(button)
+      addCompleteEventListener(button, card, recallEvent)
+    }
+  }
 }
 
 class RecallEvent {
@@ -25,11 +80,11 @@ class RecallEvent {
 
   makeRecallEventButton(){
     let button = document.createElement('button')
-    setRecallButtonClass(button, this)
+    this.setRecallButtonClass(button)
     
     
     let message = `${this.scheduledDate}`
-    button.innerHTML = `${setCheck(this)} ${message}`
+    button.innerHTML = `${this.setCheck()} ${message}`
     this.disableIfAfterToday(button)
     return button
   }
@@ -80,64 +135,9 @@ function makeMemories(memoryHash){
   return memoryArray
 }
 
-function makeMemoryCard(memory){
-  let card = document.createElement('div');
-  card.className = 'card';
-
-  let cardTitle = document.createElement('h4');
-  cardTitle.className = 'card-title';
-  cardTitle.textContent = memory.title;
-
-  let cardHeader = document.createElement('div');
-  cardHeader.className = 'card-header text-right';
-
-  let cardBody = document.createElement('div');
-  cardBody.className = 'card-body';
-
-  let cardFooter = document.createElement('div')
-  cardFooter.className = 'card-footer'
-
-  let deleteButton = document.createElement('button')
-  deleteButton.className = 'btn btn-sm btn-dark'
-  deleteButton.innerHTML = '<i class="fa fa-trash" aria-hidden="true"></i>'
-
-  let categoryBadge = document.createElement('span')
-  categoryBadge.className = 'badge badge-pill badge-danger mr-2'
-  categoryBadge.innerText = memory.category
-
-  let strategy = document.createElement('p')
-  strategy.className = 'card-text'
-  strategy.innerText = memory.strategy
-
-  let startDate = document.createElement('h6')
-  startDate.className = 'card-subtitle mb-2 text-muted'
-  startDate.innerText = `Started on ${memory.startDate}`
-
-  let recall_buttons = document.createElement('div')
-  recall_buttons.className = 'row d-flex flex-wrap recall-buttons-container'
-
-  cardHeader.appendChild(categoryBadge)
-  cardHeader.appendChild(deleteButton)
-  card.appendChild(cardHeader);
-  cardBody.appendChild(cardTitle);
-  cardBody.appendChild(startDate)
-  cardBody.appendChild(strategy)
-  card.appendChild(cardBody);
-  card.appendChild(cardFooter);
-  cardFooter.appendChild(recall_buttons);
-  memoryContainer.appendChild(card)
-  addDeleteEventListener(deleteButton, card, memory)
-
-  for(const recallEvent of memory.recallEvents){
-    button = recallEvent.makeRecallEventButton()
-    recall_buttons.appendChild(button)
-    addCompleteEventListener(button, card, recallEvent)
-  }
-}
-
 function makeMemoryCards(memories){
   for(const memory of memories){
-    makeMemoryCard(memory);
+    memory.makeMemoryCard();
   }
 }
 
@@ -156,29 +156,6 @@ function makeRecallEvents(recallEventsHash){
   return recallEventsArray
 }
 
-function setRecallButtonClass(button, recallEvent){
-  button.className = `btn btn-outline-${setRecallButtonStatus(recallEvent)} recall-event-button m-1`
-}
-
-function setRecallButtonStatus(recallEvent){
-  let threeDaysAgo = new Date();
-  threeDaysAgo.setDate(threeDaysAgo.getDate() - 3)
-  const dateBeforeToday = Date.parse(recallEvent.scheduledDate) < threeDaysAgo
-  if(recallEvent.complete){
-    return 'success'
-  } else if(dateBeforeToday) {
-    return 'warning'
-  } else {
-    return 'primary'
-  }
-}
-
-function setCheck(recallEvent){
-  const unchecked = '<i class="fa fa-check-circle-o" aria-hidden="true"></i>'
-  const checked = '<i class="fa fa-check-circle" aria-hidden="true"></i>'
-  return (recallEvent.complete) ? checked : unchecked
-}
-
 function addCompleteEventListener(button, card, recallEvent){
   button.addEventListener('click', () => {
     fetch(`${MEMORIES_URL}/${recallEvent.memory_id}/recall_events/${recallEvent.id}`, {
@@ -193,7 +170,7 @@ function addCompleteEventListener(button, card, recallEvent){
     .then(json => {
       recallEvent = makeRecallEvent(json)
       button.innerHTML = recallEvent.makeRecallEventButton().innerHTML
-      setRecallButtonClass(button, recallEvent)
+      recallEvent.setRecallButtonClass(button)
     })
     .catch(error => console.log(error))
   })
@@ -217,7 +194,7 @@ function postMemory(memory_data){
     body: JSON.stringify(memory_data)
   })
   .then(res => res.json())
-  .then(memoryHash => makeMemoryCard(makeMemory(memoryHash)))
+  .then(memoryHash => makeMemory(memoryHash).makeMemoryCard())
   .catch(error => console.log(error))
 }
 
